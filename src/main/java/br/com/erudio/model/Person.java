@@ -1,4 +1,4 @@
-package model;
+package br.com.erudio.model;
 
 import jakarta.persistence.*;
 
@@ -13,7 +13,7 @@ public class Person implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 6893258666416166219L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
