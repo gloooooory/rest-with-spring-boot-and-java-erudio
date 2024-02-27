@@ -7,32 +7,36 @@ import java.util.Objects;
 public class PersonVO implements Serializable {
 
     private static final long serialVersionUID = 0L;
-
-    private Long id;
+    private long id;
     private String firstName;
     private String lastName;
     private String address;
     private String gender;
 
-    public Long getId() {
-        return id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         PersonVO person = (PersonVO) o;
-        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
+        return Objects.equals(this.getId(), person.getId()) && Objects.equals(this.getFirstName(), person.getFirstName()) && Objects.equals(this.getLastName(), person.getLastName()) && Objects.equals(this.getAddress(), person.getAddress()) && Objects.equals(this.getGender(), person.getGender());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
+        return Objects.hash(this.getId(), this.getFirstName(), this.getLastName(), this.getAddress(), this.getGender());
+    }
+
+
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -40,7 +44,7 @@ public class PersonVO implements Serializable {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
@@ -48,7 +52,7 @@ public class PersonVO implements Serializable {
     }
 
     public String getAddress() {
-        return address;
+        return this.address;
     }
 
     public void setAddress(String address) {
@@ -56,14 +60,11 @@ public class PersonVO implements Serializable {
     }
 
     public String getGender() {
-        return gender;
+        return this.gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 }
