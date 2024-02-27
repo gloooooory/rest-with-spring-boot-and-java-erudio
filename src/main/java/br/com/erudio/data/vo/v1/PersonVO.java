@@ -1,41 +1,23 @@
-package br.com.erudio.model;
+package br.com.erudio.data.vo.v1;
 
-import jakarta.persistence.*;
-
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 
-@Entity
-@Table(name = "person")
-public class Person implements Serializable {
+public class PersonVO implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID = 6893258666416166219L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private static final long serialVersionUID = 0L;
     private long id;
-
-    @Column(name = "first_name", nullable = false, length = 80)
     private String firstName;
-
-    @Column(name = "last_name", nullable = false, length = 80)
     private String lastName;
-
-    @Column(nullable = false, length = 80)
     private String address;
-
-    @Column(nullable = false, length = 6)
-
     private String gender;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        Person person = (Person) o;
+        PersonVO person = (PersonVO) o;
         return Objects.equals(this.getId(), person.getId()) && Objects.equals(this.getFirstName(), person.getFirstName()) && Objects.equals(this.getLastName(), person.getLastName()) && Objects.equals(this.getAddress(), person.getAddress()) && Objects.equals(this.getGender(), person.getGender());
     }
 
@@ -43,6 +25,7 @@ public class Person implements Serializable {
     public int hashCode() {
         return Objects.hash(this.getId(), this.getFirstName(), this.getLastName(), this.getAddress(), this.getGender());
     }
+
 
     public long getId() {
         return this.id;
@@ -83,4 +66,5 @@ public class Person implements Serializable {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
 }
