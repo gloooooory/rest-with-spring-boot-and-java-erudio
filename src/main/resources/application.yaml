@@ -6,5 +6,5 @@ spring:
     password: wd9824321
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show_sql: true
