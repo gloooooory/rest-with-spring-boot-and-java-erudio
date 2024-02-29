@@ -25,31 +25,31 @@ public class PersonService {
     PersonMapper mapper;
 
     public List<PersonVO> findAll() {
-        this.logger.info("Finding everyone!");
+        logger.info("Finding everyone!");
 
         return DozerMapper.parseListObjects(this.repository.findAll(), PersonVO.class);
     }
 
     public PersonVO findById(Long id) {
-        this.logger.info("Finding one person!");
+        logger.info("Finding one person!");
 
-        var entity = this.repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
-        return DozerMapper.parseObject(entity, null);
+        return DozerMapper.parseObject(entity, PersonVO.class);
     }
 
     public PersonVO createPerson(PersonVO personVO) {
-        this.logger.info("Creating one person!");
+        logger.info("Creating one person!");
 
         var entity = DozerMapper.parseObject(personVO, Person.class);
 
-        var vo = DozerMapper.parseObject(this.repository.save(entity), PersonVO.class);
+        var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
 
         return vo;
     }
 
     public PersonVOV2 createPersonV2(PersonVOV2 personVO) {
-        this.logger.info("Creating one person with V2!");
+        logger.info("Creating one person with V2!");
 
         var entity = mapper.convertVoToEntity(personVO);
 
@@ -59,23 +59,23 @@ public class PersonService {
     }
 
     public PersonVO updatePerson(PersonVO person) {
-        this.logger.info("updating person!");
-        var entity = this.repository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        logger.info("updating person!");
+        var entity = repository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        var vo = DozerMapper.parseObject(this.repository.save(entity), PersonVO.class);
+        var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
 
         return vo;
     }
 
     public void deletePerson(Long id) {
-        this.logger.info("deleting one person!");
+        logger.info("deleting one person!");
 
-        var entity = this.repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
         this.repository.delete(entity);
 
