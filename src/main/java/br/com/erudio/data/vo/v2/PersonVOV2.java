@@ -1,16 +1,21 @@
 package br.com.erudio.data.vo.v2;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 
-public class PersonVOV2 implements Serializable {
+public class PersonVOV2 extends RepresentationModel<PersonVOV2> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 0L;
-    private long id;
+
+    @JsonProperty("id")
+    private long key;
     private String firstName;
     private String lastName;
     private String address;
@@ -23,20 +28,20 @@ public class PersonVOV2 implements Serializable {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         PersonVOV2 that = (PersonVOV2) o;
-        return this.getId() == that.getId() && Objects.equals(this.getFirstName(), that.getFirstName()) && Objects.equals(this.getLastName(), that.getLastName()) && Objects.equals(this.getAddress(), that.getAddress()) && Objects.equals(this.getGender(), that.getGender()) && Objects.equals(this.getBirthDay(), that.getBirthDay());
+        return this.getKey() == that.getKey() && Objects.equals(this.getFirstName(), that.getFirstName()) && Objects.equals(this.getLastName(), that.getLastName()) && Objects.equals(this.getAddress(), that.getAddress()) && Objects.equals(this.getGender(), that.getGender()) && Objects.equals(this.getBirthDay(), that.getBirthDay());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getId(), this.getFirstName(), this.getLastName(), this.getAddress(), this.getGender(), this.getBirthDay());
+        return Objects.hash(this.getKey(), this.getFirstName(), this.getLastName(), this.getAddress(), this.getGender(), this.getBirthDay());
     }
 
-    public long getId() {
-        return this.id;
+    public long getKey() {
+        return this.key;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setKey(long key) {
+        this.key = key;
     }
 
     public String getFirstName() {
